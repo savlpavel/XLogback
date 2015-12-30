@@ -22,9 +22,10 @@ public class TestServlet extends HttpServlet {
 		super.doGet(req, resp);
 		
 		logger.info("Test servlet got a request");
-		
+				
 		PrintWriter out = resp.getWriter();
-		out.println("This is for testing.");
+		resp.setCharacterEncoding("UTF-8");
+		
 		out.close();
 	}
 
@@ -34,4 +35,6 @@ public class TestServlet extends HttpServlet {
 		logger.info("Test Servlet initiated");
 	}
 
+	
+	
 }

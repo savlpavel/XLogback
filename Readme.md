@@ -74,6 +74,13 @@ Here are a comparison between two projects:
 
 # How to start?
 
+
+## General Notes
+
+- OpenLog database should be secured against anonymous users. However, if you are planning to log anonymous requests in servlets where we are not able to acquire a trusted session, OpenLog database should be configured properly:
+    - Anonymous users should be "Depositor" with "Write Public Documents" privilege.
+    - Maximum Internet Name And Password should be Author or above.
+
 ## For XPages Developers
 
 - XLogback ships with two update sites for Domino Server and Designer. Designer client includes source bundles.
@@ -109,6 +116,18 @@ public class JavaTest01 {
 You might either import `org.openntf.base.logback` project into your workplace or add the plugin into your Target platform.
 
 Soon we will mavenize the project for easier installation into the Eclipse IDE.
+
+### Notes for Apache Wink developers
+
+Apache Wink uses SLF4J API so when using Logback and Apache Wink at the same time, expect unusual messages on Domino console.
+
+- Sometimes, SLF4J might complaint about "multiple bindings". This is a known issue with OSGi plugins and no problem for the configuration. 
+
+> SLF4J: Class path contains multiple SLF4J bindings.
+
+- The logging format might conflict between Wink plugin and XLogback. As far as I observe, internal events of `org.apache.wink` and `com.ibm.wink` are using the default logging format coming with the SLF4J library of Wink. 
+- If you design your own Wink servlet and using XLogback for logging, make sure you have listed XLogback plugin in the *Required Plugins* section **directly** and in a **higher priority**. Otherwise it will not use XLogback engine for logging.
+- This is still under investigation for further testing.
 
 # Configuration Options
 
@@ -296,3 +315,4 @@ Let me know if you want to contribute in any way :)
   - Resolved as of 0.91
 - When logging from XPages applications, OpenLog does not provide database and agent values yet.
   - This is easy but there are several different options. So I have to pick up the most effective method.
+- Security Exception when XPages code calls LoggerFactory (need to resolve when and why)

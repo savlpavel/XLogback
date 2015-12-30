@@ -304,6 +304,8 @@ public class OpenLogEntry implements Serializable {
 
 			return logDoc.save(false, false);
 			
+		} catch (NotesException ne) {
+			throw new LoggingException("Unable to save OpenLog document: "+ne.text, ne);
 		} catch (Throwable t) {
 			throw new LoggingException("Unable to save OpenLog document", t);
 		} finally {
