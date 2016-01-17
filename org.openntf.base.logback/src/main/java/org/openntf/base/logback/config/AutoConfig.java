@@ -157,12 +157,17 @@ public class AutoConfig {
 		DominoConsoleAppender<ILoggingEvent> consoleAppender = getConsoleAppender();
 		OpenLogAppender openLogAppender = getOpenLogAppender();
 		RollingFileAppender<ILoggingEvent> rollingFileAppender = getRollingFileAppender();
-		
+				
 		Logger root = lc.getLogger(Logger.ROOT_LOGGER_NAME);
 		root.addAppender(consoleAppender);
 		root.addAppender(openLogAppender);
 		root.addAppender(rollingFileAppender);
 
+		// This is somewhat important for XPages apps.
+		// Getting packaging data for stack traces needs classLoader access.
+		// Logback does not wrap that part with relevant code block so it throws exception.
+		lc.setPackagingDataEnabled(false);		
+		
 		// Check status levels for any ERROR from configurators
 		int highestLevel = statusUtil.getHighestLevel(0);
 		return (highestLevel != ErrorStatus.ERROR);
