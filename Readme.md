@@ -1,5 +1,5 @@
 **XLogback Project**  
-*Version 0.91 Preview*
+*Version 1.00 RC*
 
 OPENNTF
 
@@ -147,11 +147,15 @@ For plugins running on DOTS environment `System.out.println()` does not provide 
 
 Plugin picks the right appender in runtime.
 
+During automatic configuration, we inject a custom converter, so that `NotesException` messages are rendered with `text` field instead of `getMessage()`.
+
 ### Rolling File Appender with HTML Layout
 
 By default, XLogback creates an HTML log file under `IBM_TECHNICAL_SUPPORT\xlogback` directory. The log file will be rolled by size according to the configuration.
 
 We could use the same file for HTTP and DOTS plugins at the same time. But there would be a minor performance cost using the same file for different VMs. Therefore the log file created in the HTTP will be named as `XSP.html`. For DOTS, the file name will be the same with mq name (e.g. DOTS by default). So multiple DOTS profiles are supported :)
+
+During automatic configuration, we inject a custom throwable renderer, so that `NotesException` messages are rendered with `text` field instead of `getMessage()`. 
 
 ### OpenLog Appender
 
@@ -309,6 +313,12 @@ Submit your feature requests and bug reports into [XLogback Jira Project Page](h
 
 Let me know if you want to contribute in any way :)
 
+# What is New?
+
+- (FIX) Added exception detail for OpenLog document processing
+- (FIX) Fixed security exception in XPages logging.
+- (FEATURE) Added NotesException details in stack traces for Console logging and File logging (Automatic Configuration)
+
 # Known Issues
 
 - ~~In Designer, autocomplete is not working properly for SLF4J classes~~.
@@ -316,3 +326,4 @@ Let me know if you want to contribute in any way :)
 - When logging from XPages applications, OpenLog does not provide database and agent values yet.
   - This is easy but there are several different options. So I have to pick up the most effective method.
 - Security Exception when XPages code calls LoggerFactory (need to resolve when and why)
+
