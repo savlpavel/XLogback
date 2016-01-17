@@ -185,6 +185,9 @@ public class AutoConfig {
 		PatternLayout layout = new PatternLayout();
 		layout.setPattern(patternStr);
 		layout.setContext(lc);
+		
+		LogUtils.injectCustomConverters(layout);
+
 		appender.setLayout(layout);
 
 		if(logLevel!=null) {
@@ -273,6 +276,9 @@ public class AutoConfig {
 		HTMLLayout layout = new HTMLLayout();
 		layout.setContext(lc);
 		layout.setPattern(pattern);
+		
+		LogUtils.injectCustomThrowableRenderer(layout);
+		
 		layout.start();
 		
 		LayoutWrappingEncoder<ILoggingEvent> encoder = new LayoutWrappingEncoder<ILoggingEvent>(); 
