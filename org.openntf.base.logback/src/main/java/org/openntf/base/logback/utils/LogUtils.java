@@ -70,7 +70,7 @@ public class LogUtils {
 
 	public static String getPlatformName() {
 		String platform = System.getProperty("dots.mq.name");
-		return StringUtils.defaultIfEmpty(platform, "XSP");		
+		return StrUtils.defaultIfEmpty(platform, "XSP");		
 	}
 
 	

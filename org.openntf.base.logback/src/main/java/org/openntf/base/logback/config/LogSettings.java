@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import org.openntf.base.logback.utils.LogUtils;
-import org.openntf.base.logback.utils.StringUtils;
+import org.openntf.base.logback.utils.StrUtils;
 import org.openntf.base.logback.utils.Utils;
 
 import ch.qos.logback.classic.Level;
@@ -179,19 +179,19 @@ public class LogSettings {
 		String param = line.substring(0, pos);
 		String value = line.substring(pos+1);
 
-		if(StringUtils.isEmpty(param)) {
+		if(StrUtils.isEmpty(param)) {
 			return;
 		}
 		
-		if(StringUtils.equalsIgnoreCase("NotesProgram", param)) {
+		if(StrUtils.equalsIgnoreCase("NotesProgram", param)) {
 			setValue(SETTING_DOMINO_PROGRAM, value);
 		} 
 		
-		if(StringUtils.equalsIgnoreCase("Directory", param)) {
+		if(StrUtils.equalsIgnoreCase("Directory", param)) {
 			setValue(SETTING_DOMINO_DATA, value);
 		} 
 		
-		if(StringUtils.equalsIgnoreCase("LogFile_Dir", param)) {
+		if(StrUtils.equalsIgnoreCase("LogFile_Dir", param)) {
 			setValue(SETTING_DOMINO_LOGGING, value);
 		}
 		
@@ -201,7 +201,7 @@ public class LogSettings {
 	}
 
 	private void setValue(String param, String value) {
-		if(StringUtils.isEmpty(param) || StringUtils.isEmpty(value)) {
+		if(StrUtils.isEmpty(param) || StrUtils.isEmpty(value)) {
 			return;
 		}
 
@@ -225,16 +225,16 @@ public class LogSettings {
 	 * @return null if name is empty or value does not exist.
 	 */
 	public static String getStringValue(String name) {
-		if(StringUtils.isEmpty(name)) return null;
+		if(StrUtils.isEmpty(name)) return null;
 
 		String sysValue = System.getProperty(SETTING_XLB_PREFIX+name);
-		if(StringUtils.isNotEmpty(sysValue)) {
+		if(StrUtils.isNotEmpty(sysValue)) {
 			return sysValue;
 		}
 		
 		String value = getSettings().get(name);
 		
-		return StringUtils.defaultIfEmpty(value, defaultSettings.get(name));
+		return StrUtils.defaultIfEmpty(value, defaultSettings.get(name));
 	}
 
 	/**
@@ -253,7 +253,7 @@ public class LogSettings {
 	 */
 	public static String getStringValue(String name, String defaultIfEmpty) {
 		String value = getStringValue(name);		
-		return StringUtils.isEmpty(value) ? defaultIfEmpty : value;
+		return StrUtils.isEmpty(value) ? defaultIfEmpty : value;
 	}
 
 	/**
@@ -269,7 +269,7 @@ public class LogSettings {
 	 * @return null if name is empty, value does not exist or not integer.
 	 */
 	public static Integer getIntegerValue(String name) {
-		if(StringUtils.isEmpty(name)) return null;
+		if(StrUtils.isEmpty(name)) return null;
 
 		String sysValue = System.getProperty(SETTING_XLB_PREFIX+name);
 		if(Utils.isInteger(sysValue)) {
@@ -322,21 +322,21 @@ public class LogSettings {
 	 * @return null if name is empty, value does not exist or not boolean.
 	 */
 	public static Boolean getBooleanValue(String name) {
-		if(StringUtils.isEmpty(name)) return null;
+		if(StrUtils.isEmpty(name)) return null;
 
 		String sysValue = System.getProperty(SETTING_XLB_PREFIX+name);
 		if(Utils.isBoolean(sysValue)) {
-			return StringUtils.equalsIgnoreCase(sysValue, "true");
+			return StrUtils.equalsIgnoreCase(sysValue, "true");
 		}
 		
 		String value = getSettings().get(name);
 		if(Utils.isBoolean(value)) {
-			return StringUtils.equalsIgnoreCase(value, "true");
+			return StrUtils.equalsIgnoreCase(value, "true");
 		}
 		
 		String defValue = defaultSettings.get(name);
 		if(Utils.isBoolean(defValue)) {
-			return StringUtils.equalsIgnoreCase(defValue, "true");
+			return StrUtils.equalsIgnoreCase(defValue, "true");
 		}
 		
 		return null;
@@ -375,7 +375,7 @@ public class LogSettings {
 	 * @return null if name is empty, value does not exist or not a log level.
 	 */
 	public static Level getLogLevelValue(String name) {
-		if(StringUtils.isEmpty(name)) return null;
+		if(StrUtils.isEmpty(name)) return null;
 
 		String sysValue = System.getProperty(SETTING_XLB_PREFIX+name);
 		if(Utils.isLogLevel(sysValue)) {
@@ -429,11 +429,11 @@ public class LogSettings {
 	public static String getDominoDataPath() {
 		String pathData = getStringValue(SETTING_DOMINO_DATA);
 		
-		if(StringUtils.isEmpty(pathData)) {
+		if(StrUtils.isEmpty(pathData)) {
 			// This is compatible with Linux as well.
 			pathData = System.getProperty("user.dir");
 			
-			if(StringUtils.isNotEmpty(pathData) && !pathData.toLowerCase(Locale.ENGLISH).endsWith("data")) {
+			if(StrUtils.isNotEmpty(pathData) && !pathData.toLowerCase(Locale.ENGLISH).endsWith("data")) {
 				pathData += Utils.toSafeFolder(pathData) + "data";
 			}
 	
@@ -450,7 +450,7 @@ public class LogSettings {
 	public static String getDominoLoggingPath() {
 		String pathLogging = getStringValue(SETTING_DOMINO_LOGGING);
 		
-		if(StringUtils.isEmpty(pathLogging)) {
+		if(StrUtils.isEmpty(pathLogging)) {
 			pathLogging = Utils.toSafeFolder(getDominoDataPath()) + "IBM_TECHNICAL_SUPPORT";
 		}
 		return Utils.toSafeFolder(pathLogging);
@@ -467,7 +467,7 @@ public class LogSettings {
 	public static String getLogbackLoggingPath() {
 		String logPath = getDominoLoggingPath();
 		
-		if(StringUtils.isEmpty(logPath)) {
+		if(StrUtils.isEmpty(logPath)) {
 			return Utils.toSafeFolder(System.getProperty("rcp.data"))+"logs";
 		}
 		

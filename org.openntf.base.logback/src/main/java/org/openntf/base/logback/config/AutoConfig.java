@@ -20,7 +20,7 @@ import java.util.List;
 import org.openntf.base.logback.console.DominoConsoleAppender;
 import org.openntf.base.logback.openlog.OpenLogAppender;
 import org.openntf.base.logback.utils.LogUtils;
-import org.openntf.base.logback.utils.StringUtils;
+import org.openntf.base.logback.utils.StrUtils;
 import org.openntf.base.logback.utils.Utils;
 import org.slf4j.LoggerFactory;
 
@@ -244,7 +244,7 @@ public class AutoConfig {
 		String logFileName = "";
 		String logFilePattern = "";
 		
-		if(StringUtils.isEmpty(logFilePath)){
+		if(StrUtils.isEmpty(logFilePath)){
 			logFilePath = LogSettings.getLogbackLoggingPath();
 		}
 		

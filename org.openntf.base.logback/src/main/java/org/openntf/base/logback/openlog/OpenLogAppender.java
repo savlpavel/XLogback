@@ -26,7 +26,7 @@ import lotus.domino.Session;
 
 import org.openntf.base.logback.core.LoggingException;
 import org.openntf.base.logback.utils.DominoRunner;
-import org.openntf.base.logback.utils.StringUtils;
+import org.openntf.base.logback.utils.StrUtils;
 import org.openntf.base.logback.utils.Utils;
 import org.openntf.base.logback.utils.DominoRunner.SessionRoutine;
 import org.slf4j.MDC;
@@ -55,7 +55,7 @@ public class OpenLogAppender extends AppenderBase<ILoggingEvent> {
 	@Override
 	public void start() {
 
-		if(StringUtils.isEmpty(targetDbPath)) {
+		if(StrUtils.isEmpty(targetDbPath)) {
 			addError("OpenLog database has not been set. OpenLog logger will fail.");
 			return;
 		}
@@ -107,7 +107,7 @@ public class OpenLogAppender extends AppenderBase<ILoggingEvent> {
 		if (null != tp) {
 			item.setBaseException(tp.getThrowable());
 
-			if(StringUtils.isEmpty(message)) {
+			if(StrUtils.isEmpty(message)) {
 				message = (null != tp.getMessage()) ? tp.getMessage() : tp.getClass().getCanonicalName();
 			}
 		}
@@ -142,7 +142,7 @@ public class OpenLogAppender extends AppenderBase<ILoggingEvent> {
 
 			@Override
 			public Boolean fallback() {
-				addWarn("We can't have a session yet. Next time...");
+				addInfo("We can't have a session yet. Next time...");
 				return false;
 			}
 
@@ -190,11 +190,11 @@ public class OpenLogAppender extends AppenderBase<ILoggingEvent> {
 	protected String getAgent() {
 		String agentSet = MDC.get("agent");
 
-		if(StringUtils.isNotEmpty(agentSet)) {
+		if(StrUtils.isNotEmpty(agentSet)) {
 			return agentSet;
 		}
 
-		if(StringUtils.isNotEmpty(getDefaultAgent())) {
+		if(StrUtils.isNotEmpty(getDefaultAgent())) {
 			return getDefaultAgent();
 		}
 		
@@ -204,11 +204,11 @@ public class OpenLogAppender extends AppenderBase<ILoggingEvent> {
 	protected String getApp() {
 		String appSet = MDC.get("app");
 		
-		if(StringUtils.isNotEmpty(appSet)) {
+		if(StrUtils.isNotEmpty(appSet)) {
 			return appSet;
 		}
 		
-		if(StringUtils.isNotEmpty(getDefaultApp())) {
+		if(StrUtils.isNotEmpty(getDefaultApp())) {
 			return getDefaultApp();
 		}
 		
@@ -232,7 +232,7 @@ public class OpenLogAppender extends AppenderBase<ILoggingEvent> {
 	}
 
 	public String getTargetDbServer() {
-		return StringUtils.isEmpty(targetDbServer) ? targetDbServer : "";
+		return StrUtils.isEmpty(targetDbServer) ? targetDbServer : "";
 	}
 
 	/**
@@ -244,7 +244,7 @@ public class OpenLogAppender extends AppenderBase<ILoggingEvent> {
 	}
 
 	public String getTargetDbPath() {
-		return StringUtils.isNotEmpty(targetDbPath) ? targetDbPath : DEFAULT_LOGDBPATH;
+		return StrUtils.isNotEmpty(targetDbPath) ? targetDbPath : DEFAULT_LOGDBPATH;
 	}
 
 	/**

@@ -22,7 +22,7 @@
  */
 package org.openntf.base.logback.utils;
 
-public class StringUtils {
+public class StrUtils {
 
 	public static boolean isEmpty(final CharSequence s) {
 		return s==null || s.length()==0;

@@ -35,7 +35,7 @@ public class Utils {
 	public static final String FILE_SEPARATOR = System.getProperty("file.separator");	
 	
 	public static boolean isInteger(String value) {
-        if (StringUtils.isEmpty(value)) {
+        if (StrUtils.isEmpty(value)) {
             return false;
         }
         
@@ -211,12 +211,12 @@ public class Utils {
 	}
 
 	public static String toSafeFolder(String path) {
-		if(StringUtils.isEmpty(path)) return "";
+		if(StrUtils.isEmpty(path)) return "";
 		return path.endsWith( FILE_SEPARATOR ) ? path : ( path + FILE_SEPARATOR ); 
 	}
 
 	public static boolean isBoolean(String value) {
-		return StringUtils.equalsIgnoreCase(value, "true") || StringUtils.equalsIgnoreCase(value, "false");
+		return StrUtils.equalsIgnoreCase(value, "true") || StrUtils.equalsIgnoreCase(value, "false");
 	}
 
 	public static boolean isLogLevel(String value) {
