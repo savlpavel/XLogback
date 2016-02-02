@@ -191,6 +191,8 @@ public class AutoConfig {
 		appender.setLayout(layout);
 
 		if(logLevel!=null) {
+			addInfo("Console Log Level is " + logLevel.toString());
+
 			ThresholdFilter filter = new ThresholdFilter();
 			filter.setLevel(logLevel.levelStr); 
 			appender.addFilter(filter);
@@ -226,6 +228,8 @@ public class AutoConfig {
 		appender.setDefaultApp(defaultApp);
 		
 		if(logLevel!=null) {
+			addInfo("OpenLog Log Level is " + logLevel.toString());
+
 			ThresholdFilter filter = new ThresholdFilter();
 			filter.setLevel(logLevel.levelStr); 
 			appender.addFilter(filter);
@@ -287,6 +291,8 @@ public class AutoConfig {
 		encoder.start();
 		
 		if(logLevel!=null) {
+			addInfo("RollingFile Log Level is " + logLevel.toString());
+
 			ThresholdFilter filter = new ThresholdFilter();
 			filter.setLevel(logLevel.levelStr); 
 			appender.addFilter(filter);
