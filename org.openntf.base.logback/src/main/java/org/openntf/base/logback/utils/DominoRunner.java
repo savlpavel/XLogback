@@ -58,7 +58,6 @@ public class DominoRunner {
 		session = findNotesContextSession(trusted);
 		
 		if(null != session) {
-			logger.trace("Got a NotesContext session!");
 			try {
 				return routine.doRun(session);
 			} catch(Throwable t) {
@@ -66,14 +65,10 @@ public class DominoRunner {
 			}
 		}
 
-		logger.trace("Failed to have a NotesContext session...");
-		
 		// So we couldn't grab the session... It means that we are out of XPages. 
 		// If this is a servlet, we still have a chance for getting a User Session.
 		
 		if(!trusted) {
-			logger.trace("User session requested. We'll try ContextInfo.");
-			
 			session = findContextInfoSession();
 			
 			if(null != session) {
@@ -84,27 +79,22 @@ public class DominoRunner {
 					return routine.onException(t);
 				}
 			}
-
-			logger.trace("Failed to have a ContextInfo session...");
 		}
 		
 		// We might be on an OSGi-level thread, DOTS or a servlet.
 		// Either way, we hope we are allowed to have NotesThread session.
 		
 		try {
-			logger.trace("Trying NotesThread option.");
 			NotesThread.sinitThread();
 			session = NotesFactory.createTrustedSession();
 			
 			if(null != session) {
-				logger.trace("NotesThread worked. We have a session now...");
 				try {
 					return routine.doRun(session);
 				} catch(Throwable t) {
 					return routine.onException(t);
 				}
 			}
-			logger.trace("Received a NULL session from NotesThread.");
 		} catch (NotesException e) {
 			// Ooops. We can't have a Session. That means trouble.
 			logger.trace("Unable to receive a session from NotesThread: {}", e.text);
@@ -138,7 +128,6 @@ public class DominoRunner {
 					Object nc = m1.invoke(null, new Object[0]);
 					
 					if(nc==null) {
-						logger.trace("NotesContext is null");
 						// NotesContext is unavailable. We are out of XSP context.
 						return null;
 					} else {

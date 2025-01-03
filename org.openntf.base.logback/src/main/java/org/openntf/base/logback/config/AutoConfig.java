@@ -163,6 +163,9 @@ public class AutoConfig {
 		root.addAppender(openLogAppender);
 		root.addAppender(rollingFileAppender);
 
+		// Set the root level to the minimum of three appenders.
+		root.setLevel(findRootLevel());
+		
 		// This is somewhat important for XPages apps.
 		// Getting packaging data for stack traces needs classLoader access.
 		// Logback does not wrap that part with relevant code block so it throws exception.
@@ -305,6 +308,16 @@ public class AutoConfig {
 		appender.start();
 
 		return appender;
+	}
+
+	private Level findRootLevel() {
+		int cl = LogSettings.getLogLevelValue(LogSettings.SETTING_CONSOLE_LOGLEVEL, Level.OFF).levelInt;
+		int fl = LogSettings.getLogLevelValue(LogSettings.SETTING_FILE_LOGLEVEL, Level.OFF).levelInt;
+		int ol = LogSettings.getLogLevelValue(LogSettings.SETTING_OPENLOG_LOGLEVEL, Level.OFF).levelInt;
+		
+		int rl = Math.min(cl, Math.min(fl, ol));
+		
+		return Level.toLevel(rl);
 	}
 
 	private void addError(String msg, Throwable t) {
