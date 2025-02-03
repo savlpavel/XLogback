@@ -15,6 +15,10 @@ OPENNTF
 	- [Why Logback?](#why-logback)
 	- [XPages OpenLog Logger vs. XLogback](#xpages-openlog-logger-vs-xlogback)
 - [How to start?](#how-to-start)
+	- [General Notes](#general-notes)
+	- [For XPages Developers](#for-xpages-developers)
+	- [For Plugin Developers](#for-plugin-developers)
+		- [Notes for Apache Wink developers](#notes-for-apache-wink-developers)
 - [Configuration Options](#configuration-options)
 	- [Automatic Configuration](#automatic-configuration)
 		- [Console Appender:](#console-appender)
@@ -24,11 +28,16 @@ OPENNTF
 	- [Configuration File (XML or Groovy)](#configuration-file-xml-or-groovy)
 		- [Sample Logback.xml](#sample-logbackxml)
 		- [Provide a configuration file](#provide-a-configuration-file)
+			- [Domino 9 and 10](#domino-9-and-10)
+			- [Domino 11](#domino-11)
+			- [Domino 12 and above](#domino-12-and-above)
 		- [Declare from your own plugin](#declare-from-your-own-plugin)
 	- [Custom Configuration](#custom-configuration)
 - [Under the hood:](#under-the-hood)
 	- [Logback Configuration in Deep](#logback-configuration-in-deep)
 - [How to Contribute](#how-to-contribute)
+- [What is New?](#what-is-new)
+- [Known Issues](#known-issues)
 <!-- /TOC -->
 
 
@@ -36,7 +45,7 @@ OPENNTF
 
 XLogback is a plugin project to integrate [Logback Project](http://logback.qos.ch/) into the Domino OSGi environment.
 
-The purpose of the project is to provide universal logging platform for all Java codes in the IBM Domino OSGi platform, including XPages apps/plugins, servlets and DOTS (Domino OSGi Tasklet Services) with a single implementation.
+The purpose of the project is to provide universal logging platform for all Java codes in the Domino OSGi platform, including XPages apps/plugins, servlets and DOTS (Domino OSGi Tasklet Services) with a single implementation.
 
 ## Features
 
@@ -85,7 +94,7 @@ Here are a comparison between two projects:
 
 - XLogback ships with two update sites for Domino Server and Designer. Designer client includes source bundles.
 - Install update sites into your Domino Server and Domino Designer.
-  - You can follow [this](http://www-10.lotus.com/ldd/ddwiki.nsf/xpDocViewer.xsp?lookupName=Domino+Designer+XPages+Extension+Library#action=openDocument&res_title=Installing_the_OpenNTF_update_site_in_Domino_Designer_ddxl853&content=pdcontent) and [this](http://www-10.lotus.com/ldd/ddwiki.nsf/xpDocViewer.xsp?lookupName=Domino+Designer+XPages+Extension+Library#action=openDocument&res_title=Installing_the_OpenNTF_update_site_on_the_Domino_server_ddxl853&content=pdcontent) wiki pages to learn how to do it.
+  - You can follow [this](https://ds_infolib.hcltechsw.com/ldd/ddwiki.nsf/xpDocViewer.xsp?lookupName=Domino+Designer+XPages+Extension+Library#action=openDocument&res_title=Installing_the_OpenNTF_update_site_on_the_Domino_server_ddxl853&content=pdcontent) and [this](https://ds_infolib.hcltechsw.com/ldd/ddwiki.nsf/xpDocViewer.xsp?lookupName=Domino+Designer+XPages+Extension+Library#action=openDocument&res_title=Installing_the_OpenNTF_update_site_in_Domino_Designer_ddxl853&content=pdcontent) wiki pages to learn how to do it.
 - Restart your server and Designer clients.
 - Open your Notes application in Domino Designer and go to **Page Generation** section under **XSP.Properties**.
   - If the installation is successful, you should see "**org.openntf.base.logback.xsp.plugin.library**" in XPage Libraries section.
@@ -165,7 +174,8 @@ XLogback will log into `OpenLog.nsf` file on the server data root. Of course tha
 
 XLogback uses several configuration parameters for auto-configuration. When started (the first logging attempt), it looks for several JVM settings and Notes.ini parameters to decide if autoconfiguration is enabled and other settings it needs for automatic configuration.
 
-JVM settings always precede notes.ini parameters. This would be useful if you want to use separate settings for DOTS and XSP environments. In such a case JVM properties can be provided using a separate file and `DOTS_JavaOptionsFile` notes.ini parameter.
+JVM settings always precede notes.ini parameters. This would be useful if you want to use separate settings for DOTS and XSP environments. \
+In such a case JVM properties can be provided using a separate file and notes.ini parameter. [more details](#Provide-a-configuration-file)
 
 All XLogback parameters start with `Xlb_` prefix. Changing any parameters needs a platform restart (DOTS or HTTP).
 
@@ -196,14 +206,14 @@ Logback uses XML configuration or Groovy scripts for configuration. Normally it 
 
 Remember to disable Automatic Configuration if you want to customize logging configuration.
 
-XLogback ships with a sample XML file in the `src\main\resources` directory (*logback-sample.xml*). There are several options to help Logback to find it.
+XLogback ships with a sample XML file in the `src\main\resources` directory (*logback-sample.xml*). There are several options to help Logback to find it. More details about Logback configuration [there](https://logback.qos.ch/manual/configuration.html)
 
 ### Sample Logback.xml
 
 ```XML
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<configuration debug="false">
+<configuration debug="false" scan="true">
 	<appender
 		name="console"
 		class="org.openntf.base.logback.appender.DominoConsoleAppender">
@@ -260,17 +270,29 @@ XLogback ships with a sample XML file in the `src\main\resources` directory (*lo
 You might provide logback.xml file using JVM properties. The easiest way to do that for Domino environments is using Java options file to be declared in notes.ini file. Here are steps to do that:
 
 - Create your logback.xml file in your Domino server.
-- Create a file for Java Options and add JVM properties;
+- Create a file for Java Options and add JVM properties (see Domino options by version below)
 
 ```
 -Dlogback.configurationFile=C:/path/to/config.xml
 ```
 
+- Restart the server.
+
+#### Domino 9 and 10
+
 - Tell Domino to have that java options file for the proper environment.
   - For HTTP: `JavaOptionsFile=C:/path/to/options/file.txt`
   - For DOTS: `DOTS_JavaOptionsFile=C:/path/to/options/file.txt`
 
-- Restart the server.
+#### Domino 11
+	
+- Tell Domino to have that java options file for the proper environment.
+  - For HTTP: `JavaOptionsFile=C:/path/to/options/file.txt`
+  - For DOTS: Component removed
+
+#### Domino 12 and above
+
+- One place: `JavaOptionsFile=C:/path/to/options/file.txt`
 
 ### Declare from your own plugin
 
