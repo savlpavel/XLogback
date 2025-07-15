@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<site>
-   <feature url="features/org.openntf.base.logback.xsp.feature_0.9.1.jar" id="org.openntf.base.logback.xsp.feature" version="0.9.1">
-      <category name="OpenNTF.XLogback"/>
-   </feature>
-   <category-def name="OpenNTF.XLogback" label="OpenNTF.XLogback"/>
-</site>
