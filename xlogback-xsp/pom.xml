@@ -35,6 +35,11 @@
             <artifactId>org.osgi.framework</artifactId>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.eclipse.platform</groupId>
+            <artifactId>org.eclipse.core.runtime</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -57,7 +62,7 @@
                         <_exportcontents>
                             org.slf4j
                         </_exportcontents>
-                        <privatePackage />
+                        <privatePackage/>
                         <Require-Bundle>
                             org.openntf.base.logback;bundle-version="${project.version}";visibility:=reexport,
                             com.ibm.xsp.extsn

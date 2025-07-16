@@ -1,42 +1,41 @@
 package org.openntf.base.logback.xsp;
 
-import org.openntf.base.logback.xsp.plugin.XspPlugin;
-
 import com.ibm.xsp.library.AbstractXspLibrary;
+import org.openntf.base.logback.xsp.plugin.XspPlugin;
 
 public class XlbLibrary extends AbstractXspLibrary {
 
-	public XlbLibrary() {
-	}
-		
-	@Override
-	public String getLibraryId() {
-		return XspPlugin.class.getPackage().getName()+".library";
-	}
+    public XlbLibrary() {
+    }
 
-	@Override
-	public String getPluginId() {
-		return XspPlugin.getContext().getBundle().getSymbolicName();
-	}
+    @Override
+    public String getLibraryId() {
+        return XspPlugin.class.getPackage().getName() + ".library";
+    }
+
+    @Override
+    public String getPluginId() {
+        return XspPlugin.getContext().getBundle().getSymbolicName();
+    }
 
     @Override
     public String[] getDependencies() {
-        return new String[] {
+        return new String[]{
         };
     }
-	
-	@Override
-	public String[] getFacesConfigFiles() {
-		return new String[] {
-				"META-INF/xlb-faces-config.xml",
-		};
-	}
 
-	@Override
-	public String[] getXspConfigFiles() {
-		return new String[] {
-				"META-INF/xlb.xsp-config",
-		};
-	}
+    @Override
+    public String[] getFacesConfigFiles() {
+        return new String[]{
+            "META-INF/xlb-faces-config.xml",
+        };
+    }
+
+    @Override
+    public String[] getXspConfigFiles() {
+        return new String[]{
+            "META-INF/xlb.xsp-config",
+        };
+    }
 
 }
