@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Pull baseline settings from the parent. -->
+    <parent>
+        <groupId>org.openntf.xlogback</groupId>
+        <artifactId>parent</artifactId>
+        <version>0.92</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>xlogback-core</artifactId>
+    <name>OpenNTF XLogback for Domino - Core Library</name>
+    <description>The core library integrating logback functionality for Domino applications</description>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>bundle-manifest</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>manifest</goal>
+                        </goals>
+                        <configuration>
+                            <excludeDependencies/>
+                            <instructions>
+                                <Automatic-Module-Name>org.openntf.base.logback</Automatic-Module-Name>
+                                <Bundle-SymbolicName>org.openntf.base.logback;singleton:=true</Bundle-SymbolicName>
+                                <Bundle-ActivationPolicy>lazy</Bundle-ActivationPolicy>
+                                <Export-Package>
+                                    org.openntf.base.logback.*,
+                                    org.slf4j.*
+                                </Export-Package>
+                                <Private-Package/>
+                                <Require-Bundle>
+                                    com.ibm.dots;resolution:=optional,
+                                    com.ibm.commons
+                                </Require-Bundle>
+                                <Import-Package>
+                                    lotus.domino,
+                                    org.eclipse.core.runtime;version="3.4.0",
+                                    org.osgi.framework;version="1.3.0"
+                                </Import-Package>
+                                <Embed-Dependency/>
+                            </instructions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestFile>META-INF/MANIFEST.MF</manifestFile>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+
+        <!-- Logback and SLF4J -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+
+        <!-- DOTS and related dependencies -->
+        <dependency>
+            <groupId>dots.p2</groupId>
+            <artifactId>com.ibm.dots</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.platform</groupId>
+            <artifactId>org.eclipse.core.runtime</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ibm.sbt</groupId>
+            <artifactId>com.ibm.commons</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Older Notes API -->
+        <dependency>
+            <groupId>domino.p2</groupId>
+            <artifactId>com.ibm.notes.java.api.win32.linux</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <!-- Corba patch needed for Notes.jar -->
+            <groupId>org.glassfish.corba</groupId>
+            <artifactId>glassfish-corba-omgapi</artifactId>
+        </dependency>
+
+    </dependencies>
+</project>
