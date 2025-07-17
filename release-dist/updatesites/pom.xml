@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Pull settings from the parent. -->
+    <parent>
+        <groupId>org.openntf.xlogback</groupId>
+        <artifactId>parent</artifactId>
+        <version>0.92</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>xlogback-updatesites</artifactId>
+    <name>XLogback XSP Update Sites</name>
+    <packaging>pom</packaging>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.openntf.maven</groupId>
+                <artifactId>p2-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <configuration>
+                            <featureDefinitions>
+                                <feature>
+                                    <artifacts>
+                                        <artifact>
+                                            <id>${project.groupId}:org.openntf.xlogback.xsp:${project.version}</id>
+                                            <transitive>false</transitive>
+                                        </artifact>
+                                    </artifacts>
+                                    <copyright>2025 Serdar Basegmez</copyright>
+                                    <description>XLogback for Domino XSP plugin</description>
+                                    <id>org.openntf.xlogback.xsp.feature</id>
+                                    <label>OpenNTF XLogback for Domino</label>
+                                    <license>Apache License 2.0</license>
+                                    <providerName>OpenNTF</providerName>
+                                    <version>${project.version}</version>
+                                </feature>
+                            </featureDefinitions>
+                        </configuration>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <id>generate-site</id>
+                        <phase>package</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.darwino</groupId>
+                <artifactId>p2sitexml-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <configuration>
+                            <category>XLogback for Domino</category>
+                        </configuration>
+                        <goals>
+                            <goal>generate-site-xml</goal>
+                        </goals>
+                        <phase>package</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

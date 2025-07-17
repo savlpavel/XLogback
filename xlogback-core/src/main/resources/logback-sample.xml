@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <configuration debug="false">
-	<appender name="console" class="org.openntf.base.logback.appender.DominoConsoleAppender">
+	<appender name="console" class="org.openntf.xlogback.appender.DominoConsoleAppender">
 		<layout class="ch.qos.logback.classic.PatternLayout">
 			<pattern>%-5level %msg%n%ex{1}</pattern>
 		</layout>
 	</appender>
 
-	<appender name="openlog" class="org.openntf.base.logback.appender.OpenLogAppender">
+	<appender name="openlog" class="org.openntf.xlogback.appender.OpenLogAppender">
 		<targetDbServer></targetDbServer>
 		<targetDbPath>OpenLog.nsf</targetDbPath>
 
@@ -16,8 +16,8 @@
 		<debugLevel>2</debugLevel>
 	</appender>
 
-	<define name="LOGPATH" class="org.openntf.base.logback.properties.LogPathProperty"></define>
-	<define name="PLATFORM" class="org.openntf.base.logback.properties.PlatformProperty"></define>
+	<define name="LOGPATH" class="org.openntf.xlogback.properties.LogPathProperty"></define>
+	<define name="PLATFORM" class="org.openntf.xlogback.properties.PlatformProperty"></define>
 
 	<appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${LOGPATH}${PLATFORM}.html</file>

@@ -13,10 +13,10 @@
  * implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package org.openntf.base.logback.properties;
+package org.openntf.xlogback.properties;
 
 import ch.qos.logback.core.PropertyDefinerBase;
-import org.openntf.base.logback.utils.LogUtils;
+import org.openntf.xlogback.utils.LogUtils;
 
 public class PlatformProperty extends PropertyDefinerBase {
 

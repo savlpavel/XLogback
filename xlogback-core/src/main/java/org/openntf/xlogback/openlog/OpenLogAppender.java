@@ -13,7 +13,7 @@
  * implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package org.openntf.base.logback.openlog;
+package org.openntf.xlogback.openlog;
 
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.classic.spi.ThrowableProxy;
@@ -25,11 +25,11 @@ import lotus.domino.Database;
 import lotus.domino.Document;
 import lotus.domino.NotesException;
 import lotus.domino.Session;
-import org.openntf.base.logback.core.LoggingException;
-import org.openntf.base.logback.utils.DominoRunner;
-import org.openntf.base.logback.utils.DominoRunner.SessionRoutine;
-import org.openntf.base.logback.utils.StrUtils;
-import org.openntf.base.logback.utils.Utils;
+import org.openntf.xlogback.core.LoggingException;
+import org.openntf.xlogback.utils.DominoRunner;
+import org.openntf.xlogback.utils.DominoRunner.SessionRoutine;
+import org.openntf.xlogback.utils.StrUtils;
+import org.openntf.xlogback.utils.Utils;
 import org.slf4j.MDC;
 import org.slf4j.Marker;
 

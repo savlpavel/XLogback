@@ -20,7 +20,7 @@
  * Modifications copyright (C) 2015 Serdar Basegmez
  *
  */
-package org.openntf.base.logback.utils;
+package org.openntf.xlogback.utils;
 
 public class StrUtils {
 

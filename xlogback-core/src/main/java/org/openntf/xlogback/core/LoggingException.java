@@ -13,10 +13,27 @@
  * implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package org.openntf.base.logback.console;
+package org.openntf.xlogback.core;
 
-public interface IConsoleLogger {
+public class LoggingException extends Exception {
 
-    public void logMessage(final String message);
+    private static final long serialVersionUID = 1L;
+
+    public LoggingException() {
+        super();
+    }
+
+    public LoggingException(String message, Throwable t) {
+        super(message, t);
+    }
+
+    public LoggingException(String message) {
+        super(message);
+    }
+
+    public LoggingException(Throwable t) {
+        super(t);
+    }
+
 
 }

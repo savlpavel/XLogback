@@ -13,7 +13,7 @@
  * implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package org.openntf.base.logback.config;
+package org.openntf.xlogback.config;
 
 import ch.qos.logback.classic.BasicConfigurator;
 import ch.qos.logback.classic.Level;
@@ -36,11 +36,11 @@ import ch.qos.logback.core.status.Status;
 import ch.qos.logback.core.status.StatusUtil;
 import ch.qos.logback.core.util.FileSize;
 import java.util.List;
-import org.openntf.base.logback.console.DominoConsoleAppender;
-import org.openntf.base.logback.openlog.OpenLogAppender;
-import org.openntf.base.logback.utils.LogUtils;
-import org.openntf.base.logback.utils.StrUtils;
-import org.openntf.base.logback.utils.Utils;
+import org.openntf.xlogback.console.DominoConsoleAppender;
+import org.openntf.xlogback.openlog.OpenLogAppender;
+import org.openntf.xlogback.utils.LogUtils;
+import org.openntf.xlogback.utils.StrUtils;
+import org.openntf.xlogback.utils.Utils;
 import org.slf4j.LoggerFactory;
 
 public class AutoConfig {

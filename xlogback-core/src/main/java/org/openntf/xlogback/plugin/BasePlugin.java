@@ -13,11 +13,11 @@
  * implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package org.openntf.base.logback.plugin;
+package org.openntf.xlogback.plugin;
 
 import ch.qos.logback.classic.LoggerContext;
 import org.eclipse.core.runtime.Plugin;
-import org.openntf.base.logback.config.AutoConfig;
+import org.openntf.xlogback.config.AutoConfig;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.slf4j.LoggerFactory;

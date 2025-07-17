@@ -13,7 +13,7 @@
     </parent>
 
     <!-- We use BSN as the artifactId. Ugly but makes things easier. -->
-    <artifactId>org.openntf.base.logback.xsp</artifactId>
+    <artifactId>org.openntf.xlogback.xsp</artifactId>
     <name>OpenNTF XLogback XSP Plugin</name>
     <packaging>bundle</packaging>
 
@@ -54,17 +54,17 @@
                     <instructions>
                         <Automatic-Module-Name>${project.artifactId}</Automatic-Module-Name>
                         <Bundle-SymbolicName>${project.artifactId};singleton:=true</Bundle-SymbolicName>
-                        <Bundle-Activator>org.openntf.base.logback.xsp.plugin.XspPlugin</Bundle-Activator>
+                        <Bundle-Activator>org.openntf.xlogback.xsp.plugin.XspPlugin</Bundle-Activator>
                         <Bundle-ActivationPolicy>lazy</Bundle-ActivationPolicy>
                         <Export-Package>
-                            org.openntf.base.logback.xsp
+                            org.openntf.xlogback.xsp
                         </Export-Package>
                         <_exportcontents>
                             org.slf4j
                         </_exportcontents>
                         <privatePackage/>
                         <Require-Bundle>
-                            org.openntf.base.logback;bundle-version="${project.version}";visibility:=reexport,
+                            org.openntf.xlogback;bundle-version="${project.version}";visibility:=reexport,
                             com.ibm.xsp.extsn
                         </Require-Bundle>
                         <Import-Package>
@@ -79,5 +79,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

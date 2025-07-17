@@ -68,7 +68,6 @@
         <maven-bundle-plugin.version>6.0.0</maven-bundle-plugin.version>
 
         <!-- Last properly tested versions: Logback-1.1.3 / slf4j-1.7.12 -->
-        <!-- We should upgrade to at least Logback-1.3.15 / slf4j-2.0.17 -->
         <logback.version>1.3.15</logback.version>
         <slf4j.version>2.0.17</slf4j.version>
 
@@ -83,7 +82,7 @@
     <modules>
         <module>xlogback-core/</module>
         <module>xlogback-xsp/</module>
-        <!--<module>release-dist/updatesites</module>-->
+        <module>release-dist/updatesites</module>
         <!--<module>release-dist/xlogback-dist</module>-->
     </modules>
 

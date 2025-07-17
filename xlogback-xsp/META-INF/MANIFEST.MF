@@ -1,15 +1,83 @@
 Manifest-Version: 1.0
+Automatic-Module-Name: org.openntf.xlogback.xsp
+Bnd-LastModified: 1752742738218
+Build-Jdk-Spec: 17
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: org.openntf.xlogback.xsp.plugin.XspPlugin
+Bundle-ClassPath: 
+ .,
+ lib/xlogback-core-0.92.jar,
+ lib/logback-core-1.3.15.jar,
+ lib/logback-classic-1.3.15.jar,
+ lib/slf4j-api-2.0.17.jar
+Bundle-Description: Common features, dependencies and configuration for 
+ OpenNTF XLogback
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
 Bundle-ManifestVersion: 2
 Bundle-Name: OpenNTF XLogback XSP Plugin
-Bundle-SymbolicName: org.openntf.base.logback.xsp;singleton:=true
-Bundle-Version: 0.9.1
-Bundle-Activator: org.openntf.base.logback.xsp.plugin.XspPlugin
-Bundle-Vendor: OpenNTF
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8, JavaSE-1.6
-Import-Package: org.eclipse.core.runtime;version="3.4.0",
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-SymbolicName: org.openntf.xlogback.xsp;singleton:=true
+Bundle-Version: 0.92.0
+Created-By: Apache Maven Bundle Plugin 6.0.0
+Embed-Dependency: *;scope=compile
+Embed-Directory: lib
+Embed-Transitive: true
+Embedded-Artifacts: 
+ lib/xlogback-core-0.92.jar;g="org.openntf.xlogback";a="xlogback-core";v
+ ="0.92",
+ lib/logback-core-1.3.15.jar;g="ch.qos.logback";a="logback-core";v="1.3.
+ 15",
+ lib/logback-classic-1.3.15.jar;g="ch.qos.logback";a="logback-classic";v
+ ="1.3.15",
+ lib/slf4j-api-2.0.17.jar;g="org.slf4j";a="slf4j-api";v="2.0.17"
+Export-Package: 
+ org.openntf.xlogback.xsp;version="0.92.0",
+ org.slf4j;version="2.0.17"
+Import-Package: 
+ org.eclipse.core.runtime;version="3.4.0",
  org.osgi.framework;version="1.3.0"
-Bundle-ActivationPolicy: lazy
-Require-Bundle: org.openntf.base.logback;bundle-version="0.9.1";visibility:=reexport,
+Include-Resource: lib/xlogback-core-0.92.jar=/Users/sbasegmez/Coding/Ope
+ nSource/XLogback/xlogback-core/target/xlogback-core-0.92.jar,lib/logbac
+ k-core-1.3.15.jar=/Users/sbasegmez/.m2/repository/ch/qos/logback/logbac
+ k-core/1.3.15/logback-core-1.3.15.jar,lib/logback-classic-1.3.15.jar=/U
+ sers/sbasegmez/.m2/repository/ch/qos/logback/logback-classic/1.3.15/log
+ back-classic-1.3.15.jar,lib/slf4j-api-2.0.17.jar=/Users/sbasegmez/.m2/r
+ epository/org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17.jar
+Private-Package: org.openntf.xlogback.xsp.plugin,lib,org.openntf.xlogbac
+ k.config,org.openntf.xlogback.console,org.openntf.xlogback.core,org.ope
+ nntf.xlogback.openlog,org.openntf.xlogback.plugin,org.openntf.xlogback.
+ properties,org.openntf.xlogback.utils,ch.qos.logback.core,ch.qos.logbac
+ k.core.boolex,ch.qos.logback.core.encoder,ch.qos.logback.core.filter,ch
+ .qos.logback.core.helpers,ch.qos.logback.core.hook,ch.qos.logback.core.
+ html,ch.qos.logback.core.joran,ch.qos.logback.core.joran.action,ch.qos.
+ logback.core.joran.conditional,ch.qos.logback.core.joran.event,ch.qos.l
+ ogback.core.joran.node,ch.qos.logback.core.joran.sanity,ch.qos.logback.
+ core.joran.spi,ch.qos.logback.core.joran.util,ch.qos.logback.core.joran
+ .util.beans,ch.qos.logback.core.layout,ch.qos.logback.core.model,ch.qos
+ .logback.core.model.conditional,ch.qos.logback.core.model.processor,ch.
+ qos.logback.core.model.processor.conditional,ch.qos.logback.core.model.
+ util,ch.qos.logback.core.net,ch.qos.logback.core.net.server,ch.qos.logb
+ ack.core.net.ssl,ch.qos.logback.core.pattern,ch.qos.logback.core.patter
+ n.color,ch.qos.logback.core.pattern.parser,ch.qos.logback.core.pattern.
+ util,ch.qos.logback.core.property,ch.qos.logback.core.read,ch.qos.logba
+ ck.core.recovery,ch.qos.logback.core.rolling,ch.qos.logback.core.rollin
+ g.helper,ch.qos.logback.core.sift,ch.qos.logback.core.spi,ch.qos.logbac
+ k.core.status,ch.qos.logback.core.subst,ch.qos.logback.core.testUtil,ch
+ .qos.logback.core.util,ch.qos.logback.classic,ch.qos.logback.classic.bo
+ olex,ch.qos.logback.classic.db.script,ch.qos.logback.classic.encoder,ch
+ .qos.logback.classic.filter,ch.qos.logback.classic.helpers,ch.qos.logba
+ ck.classic.html,ch.qos.logback.classic.joran,ch.qos.logback.classic.jor
+ an.action,ch.qos.logback.classic.joran.sanity,ch.qos.logback.classic.jo
+ ran.serializedModel,ch.qos.logback.classic.jul,ch.qos.logback.classic.l
+ ayout,ch.qos.logback.classic.log4j,ch.qos.logback.classic.model,ch.qos.
+ logback.classic.model.processor,ch.qos.logback.classic.model.util,ch.qo
+ s.logback.classic.net,ch.qos.logback.classic.net.server,ch.qos.logback.
+ classic.pattern,ch.qos.logback.classic.pattern.color,ch.qos.logback.cla
+ ssic.selector,ch.qos.logback.classic.selector.servlet,ch.qos.logback.cl
+ assic.servlet,ch.qos.logback.classic.sift,ch.qos.logback.classic.spi,ch
+ .qos.logback.classic.turbo,ch.qos.logback.classic.util,org.slf4j.event,
+ org.slf4j.helpers,org.slf4j.spi
+Require-Bundle: 
+ org.openntf.xlogback;bundle-version="0.92";visibility:=reexport,
  com.ibm.xsp.extsn
-Export-Package: org.openntf.base.logback.xsp
-Automatic-Module-Name: org.openntf.base.logback.xsp
+Tool: Bnd-7.0.0.202310060912

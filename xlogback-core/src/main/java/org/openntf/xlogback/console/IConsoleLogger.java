@@ -13,16 +13,10 @@
  * implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package org.openntf.base.logback.properties;
+package org.openntf.xlogback.console;
 
-import ch.qos.logback.core.PropertyDefinerBase;
-import org.openntf.base.logback.config.LogSettings;
+public interface IConsoleLogger {
 
-public class LogPathProperty extends PropertyDefinerBase {
-
-    @Override
-    public String getPropertyValue() {
-        return LogSettings.getLogbackLoggingPath();
-    }
+    public void logMessage(final String message);
 
 }

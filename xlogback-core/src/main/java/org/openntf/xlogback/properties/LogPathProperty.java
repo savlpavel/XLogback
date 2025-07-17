@@ -13,27 +13,16 @@
  * implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package org.openntf.base.logback.core;
+package org.openntf.xlogback.properties;
 
-public class LoggingException extends Exception {
+import ch.qos.logback.core.PropertyDefinerBase;
+import org.openntf.xlogback.config.LogSettings;
 
-    private static final long serialVersionUID = 1L;
+public class LogPathProperty extends PropertyDefinerBase {
 
-    public LoggingException() {
-        super();
+    @Override
+    public String getPropertyValue() {
+        return LogSettings.getLogbackLoggingPath();
     }
-
-    public LoggingException(String message, Throwable t) {
-        super(message, t);
-    }
-
-    public LoggingException(String message) {
-        super(message);
-    }
-
-    public LoggingException(Throwable t) {
-        super(t);
-    }
-
 
 }

@@ -13,7 +13,7 @@
  * implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package org.openntf.base.logback.openlog;
+package org.openntf.xlogback.openlog;
 
 import java.io.Serializable;
 import java.util.Calendar;
@@ -24,10 +24,10 @@ import lotus.domino.Name;
 import lotus.domino.NotesException;
 import lotus.domino.RichTextItem;
 import lotus.domino.Session;
-import org.openntf.base.logback.core.LoggingException;
-import org.openntf.base.logback.utils.LogUtils;
-import org.openntf.base.logback.utils.StrUtils;
-import org.openntf.base.logback.utils.Utils;
+import org.openntf.xlogback.core.LoggingException;
+import org.openntf.xlogback.utils.LogUtils;
+import org.openntf.xlogback.utils.StrUtils;
+import org.openntf.xlogback.utils.Utils;
 
 /**
  * The original implementation of OpenLogEntry is based on;
@@ -99,7 +99,7 @@ public class OpenLogEntry implements Serializable {
     }
 
     public boolean isEvent() {
-        return org.openntf.base.logback.utils.StrUtils.equalsIgnoreCase(eventType, TYPE_EVENT);
+        return StrUtils.equalsIgnoreCase(eventType, TYPE_EVENT);
     }
 
     public void setEvent(boolean event) {
@@ -107,7 +107,7 @@ public class OpenLogEntry implements Serializable {
     }
 
     public boolean isError() {
-        return org.openntf.base.logback.utils.StrUtils.equalsIgnoreCase(eventType, TYPE_ERROR);
+        return org.openntf.xlogback.utils.StrUtils.equalsIgnoreCase(eventType, TYPE_ERROR);
     }
 
     public void setError(boolean error) {
@@ -119,7 +119,7 @@ public class OpenLogEntry implements Serializable {
     }
 
     public void setEventSeverity(String eventSeverity) {
-        if (org.openntf.base.logback.utils.StrUtils.isNotEmpty(eventSeverity)) {
+        if (StrUtils.isNotEmpty(eventSeverity)) {
             this.eventSeverity = eventSeverity;
         }
     }
@@ -248,7 +248,7 @@ public class OpenLogEntry implements Serializable {
                 logDoc.replaceItemValue("LogMessage", getMessage());
             }
 
-            if (org.openntf.base.logback.utils.StrUtils.isNotEmpty(getFromApp())) {
+            if (StrUtils.isNotEmpty(getFromApp())) {
                 logDoc.replaceItemValue("LogFromDatabase", getFromApp());
             }
 
@@ -264,7 +264,7 @@ public class OpenLogEntry implements Serializable {
             logDoc.replaceItemValue("LogFromAgent", getFromAgent());
             logDoc.replaceItemValue("LogMarker", getMarker());
 
-            if (org.openntf.base.logback.utils.StrUtils.isNotEmpty(getLoggedDbUrl())) {
+            if (StrUtils.isNotEmpty(getLoggedDbUrl())) {
                 logDoc.replaceItemValue("LogFromDatabase", getLoggedDbPath());
                 logDoc.replaceItemValue("LogAccessLevel", getLoggedDbAccessLevel());
 
@@ -274,7 +274,7 @@ public class OpenLogEntry implements Serializable {
                 rtitem.addNewLine(1);
             }
 
-            if (org.openntf.base.logback.utils.StrUtils.isNotEmpty(getLoggedDocUrl())) {
+            if (StrUtils.isNotEmpty(getLoggedDocUrl())) {
                 try {
                     rtitem.appendText("The document associated with this event is:");
                     rtitem.addNewLine(1);

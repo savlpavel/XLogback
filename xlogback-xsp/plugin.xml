@@ -4,7 +4,7 @@
    <extension
          point="com.ibm.commons.Extension">
       <service
-            class="org.openntf.base.logback.xsp.XlbLibrary"
+            class="org.openntf.xlogback.xsp.XlbLibrary"
             type="com.ibm.xsp.Library">
       </service>
    </extension>

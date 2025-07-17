@@ -122,9 +122,7 @@ public class JavaTest01 {
 
 ## For Plugin Developers
 
-You might either import `org.openntf.base.logback` project into your workplace or add the plugin into your Target platform.
-
-Soon we will mavenize the project for easier installation into the Eclipse IDE.
+You might either import `org.openntf.xlogback` project into your workplace or add the plugin into your Target platform.
 
 ### Notes for Apache Wink developers
 
@@ -233,10 +231,10 @@ XLogback ships with a sample XML file in the `src\main\resources` directory (*lo
 
 	<define
 		name="LOGPATH"
-		class="org.openntf.base.logback.properties.LogPathProperty"></define>
+		class="properties.org.openntf.xlogback.LogPathProperty"></define>
 	<define
 		name="PLATFORM"
-		class="org.openntf.base.logback.properties.PlatformProperty"></define>
+		class="properties.org.openntf.xlogback.PlatformProperty"></define>
 
 	<appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${LOGPATH}${PLATFORM}.html</file>
@@ -303,7 +301,7 @@ Therefore use this approach only if you are planning only one plugin providing c
 The second trick is Eclipse-buddy mechanism. Normally OSGi uses separate classhpaths for each plugin. If you are providing logback.xml file from another plugin on your environment, add the following line into Manifest.mf file of your plugin, so OSGi will provides access for classpaths between both plugins.
 
 ```
-Eclipse-RegisterBuddy: org.openntf.base.logback
+Eclipse-RegisterBuddy: org.openntf.xlogback
 ```
 
 
@@ -331,7 +329,7 @@ XLogback autoconfiguration starts with the plugin start. Since we don't have any
 
 # How to Contribute
 
-Submit your feature requests and bug reports into [XLogback Jira Project Page](https://jira.openntf.org/projects/XLB).
+Submit your feature requests and bug reports into [XLogback Github Page](https://github.com/sbasegmez/XLogback/issues).
 
 Let me know if you want to contribute in any way :)
 

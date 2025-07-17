@@ -1,4 +1,4 @@
-package org.openntf.base.logback.xsp.plugin;
+package org.openntf.xlogback.xsp.plugin;
 
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleActivator;

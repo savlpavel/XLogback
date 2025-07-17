@@ -13,36 +13,13 @@
  * implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package org.openntf.base.logback.console;
+package org.openntf.xlogback.console;
 
-import com.ibm.dots.task.ServerConsole;
-
-public class DotsConsoleLogger implements IConsoleLogger {
-
-    private transient ServerConsole console;
-
-    public DotsConsoleLogger() {
-
-    }
-
-    private ServerConsole getConsole() {
-        if (null == console) {
-            console = new ServerConsole("");
-        }
-
-        return console;
-    }
+public class DefaultConsoleLogger implements IConsoleLogger {
 
     @Override
     public void logMessage(final String message) {
-        try {
-			if (null != message) {
-				getConsole().logMessage(message.replace("%", "%%"));
-			}
-        } catch (Throwable t) {
-            // DOTS platform has not been launched yet. Falling back.
-            System.out.println(message);
-        }
+        System.out.println(message);
     }
 
 }

@@ -31,11 +31,11 @@
                         <configuration>
                             <excludeDependencies/>
                             <instructions>
-                                <Automatic-Module-Name>org.openntf.base.logback</Automatic-Module-Name>
-                                <Bundle-SymbolicName>org.openntf.base.logback;singleton:=true</Bundle-SymbolicName>
+                                <Automatic-Module-Name>org.openntf.xlogback</Automatic-Module-Name>
+                                <Bundle-SymbolicName>org.openntf.xlogback;singleton:=true</Bundle-SymbolicName>
                                 <Bundle-ActivationPolicy>lazy</Bundle-ActivationPolicy>
                                 <Export-Package>
-                                    org.openntf.base.logback.*,
+                                    org.openntf.xlogback.*,
                                     org.slf4j.*
                                 </Export-Package>
                                 <Private-Package/>
@@ -109,6 +109,7 @@
             <!-- Corba patch needed for Notes.jar -->
             <groupId>org.glassfish.corba</groupId>
             <artifactId>glassfish-corba-omgapi</artifactId>
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>

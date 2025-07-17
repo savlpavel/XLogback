@@ -1,7 +1,7 @@
-package org.openntf.base.logback.xsp;
+package org.openntf.xlogback.xsp;
 
 import com.ibm.xsp.library.AbstractXspLibrary;
-import org.openntf.base.logback.xsp.plugin.XspPlugin;
+import org.openntf.xlogback.xsp.plugin.XspPlugin;
 
 public class XlbLibrary extends AbstractXspLibrary {
 

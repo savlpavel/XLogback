@@ -13,7 +13,7 @@
  * implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package org.openntf.base.logback.config;
+package org.openntf.xlogback.config;
 
 import ch.qos.logback.classic.Level;
 import java.io.BufferedReader;
@@ -23,9 +23,9 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
-import org.openntf.base.logback.utils.LogUtils;
-import org.openntf.base.logback.utils.StrUtils;
-import org.openntf.base.logback.utils.Utils;
+import org.openntf.xlogback.utils.LogUtils;
+import org.openntf.xlogback.utils.StrUtils;
+import org.openntf.xlogback.utils.Utils;
 
 /**
  * This class contains all internal configuration for the XLogback.
